@@ -1,0 +1,21 @@
+<div class="comment-form">
+  <%= form_with(model: [@comment.blog_post, @comment], local: true, data: { turbo: false }, class: "contents") do |form| %>
+    <% if @comment.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+        <ul>
+          <% @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="my-5">
+      <%= form.label :content %><br>
+      <%= form.text_area :content, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", rows: 4 %>
+    </div>
+    <% display_name = @comment.persisted? ? "Update" : "Add" %>
+     <div class="inline">
+    <%= form.submit "#{display_name} Comment", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+  <% end %>
+</div>

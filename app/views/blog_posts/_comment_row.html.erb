@@ -1,0 +1,10 @@
+<div class="bg-gray-100 rounded-lg p-4 mb-4">
+  <% if comment&.user %>
+    <p class="text-gray-800 mb-2"><strong><%= comment.user.username %>: </strong> <%= comment.content %></p>
+    <p class="text-gray-600 mb-2"><strong>Commented on:</strong> <%= comment.created_at.strftime("%B %d, %Y %H:%M") %></p>
+    <% if user_signed_in? && comment.user == current_user %>
+      <%= link_to 'Edit your comment', edit_blog_post_comment_path(comment.blog_post, comment), class: "text-blue-500 hover:underline" %>
+      <%= button_to 'Delete your comment', [@blog_post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: "ml-2 text-red-500 hover:underline" %>
+    <% end %>
+  <% end %>
+</div>

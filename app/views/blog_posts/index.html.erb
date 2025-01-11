@@ -1,0 +1,10 @@
+<body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+  <div class="container mx-auto py-20">
+    <h1 class="font-bold text-white text-3xl mb-8 text-center">All Blog Posts</h1>
+    <%= render 'blogpost' %>
+    <div class="flex justify-center mt-8">
+      <%= link_to 'Create a Post', new_blog_post_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+  </div>
+</body>
+

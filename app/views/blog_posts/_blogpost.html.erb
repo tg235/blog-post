@@ -1,0 +1,20 @@
+<% @blog_posts.each do |blog_post| %>
+  <div class="bg-white rounded-lg shadow-lg mb-8">
+    <div class="p-6">
+      <h2 class="text-xl font-bold mb-4"><%= link_to blog_post.title, blog_post, class: "text-blue-500 hover:underline" %></h2>
+      <div class="w-24 h-24 rounded-full overflow-hidden mr-6">
+        <% if blog_post.user.avatar.attached? %>
+          <%= image_tag(blog_post.user.avatar, class: "w-full h-full object-cover") %>
+        <% else %>
+          <%= image_tag('default_avatar.png', class: "w-full h-full object-cover") %>
+        <% end %>
+      </div>
+      <p class="text-gray-700 mb-4"><%= blog_post.user.username %></p>
+      <textarea rows="10" cols="70" class="text-gray-700 mb-4 bg-gray-100 p-2 rounded-md border border-gray-300" readonly><%= blog_post.content %></textarea>
+      <p class="text-gray-600"><strong>Comments:</strong> <%= blog_post.comments.count %></p>
+    </div>
+  </div>
+<% end %>
+<div class="flex justify-center">
+  <%= will_paginate @blog_posts %>
+</div>
